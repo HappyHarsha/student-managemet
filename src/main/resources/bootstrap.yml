@@ -1,0 +1,7 @@
+#spring:
+#  application:
+#    name: StudentManagement # Name used in Eureka and Config Server
+#  cloud:
+#    config:
+#      uri: http://localhost:8888 # URL of the Config Server
+#      fail-fast: true
