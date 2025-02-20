@@ -15,9 +15,9 @@ public class JwtUser implements UserDetails {
     private final String username;
     private final String password;
     private final Collection<? extends GrantedAuthority> authorities;
-    private final String firstName; // Custom field
-    private final String lastName; // Custom field
-    private final String email; // Custom field
+    private final String firstName;
+    private final String lastName;
+    private final String email;
 
     public JwtUser(String username, String password, Collection<? extends GrantedAuthority> authorities, String firstName, String lastName, String email) {
         this.username = username;
