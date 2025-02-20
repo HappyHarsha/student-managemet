@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -14,14 +15,16 @@ import java.io.Serializable;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "sch_user")
-public class UserDetail implements Serializable {
+@Table(name = "sch_user_details")
+public class SchUserDetails implements Serializable {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private UUID id;
+
+    @Column(name = "sch_id")
+    private String schId;
 
     @Column(name = "first_name")
     private String firstName;
@@ -32,9 +35,18 @@ public class UserDetail implements Serializable {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "user_name")
-    private String userName;
-
     @Column(name = "password")
     private String password;
+
+    @Column(name="address")
+    private String address;
+
+    @Column(name = "contact_number")
+    private Long contactNumber;
+
+    @Column(name = "class_name")
+    private String className;
+
+    @Column(name = "user_type")
+    private Integer userType;
 }
