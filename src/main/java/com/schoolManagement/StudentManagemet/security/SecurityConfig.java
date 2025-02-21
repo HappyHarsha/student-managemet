@@ -22,11 +22,11 @@ public class SecurityConfig {
 
     private final JwtFilter jwtFilter;
 
-    private final CustomUserDetailsService userDetailsService;
+    private final CustomAuthenticationProvider customAuthProvider;
 
-    public SecurityConfig(JwtFilter jwtFilter, CustomUserDetailsService userDetailsService) {
+    public SecurityConfig(JwtFilter jwtFilter, CustomAuthenticationProvider customAuthProvider) {
         this.jwtFilter = jwtFilter;
-        this.userDetailsService = userDetailsService;
+        this.customAuthProvider = customAuthProvider;
     }
 
     @Bean
@@ -34,21 +34,14 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
                         .anyRequest().authenticated())
-        .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                .authenticationProvider(customAuthProvider)
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
-    }
-
-    @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService);
-        provider.setPasswordEncoder(passwordEncoder());
-        return provider;
     }
 
     @Bean

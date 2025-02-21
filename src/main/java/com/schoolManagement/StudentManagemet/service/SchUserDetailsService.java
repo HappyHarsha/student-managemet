@@ -2,6 +2,6 @@ package com.schoolManagement.StudentManagemet.service;
 
 import com.schoolManagement.StudentManagemet.dto.UserDTO;
 
-public interface UserDetailService  {
+public interface SchUserDetailsService  {
     String registerUser(UserDTO userDTO);
 }

@@ -7,7 +7,7 @@ import com.schoolManagement.StudentManagemet.security.CustomUserDetailsService;
 import com.schoolManagement.StudentManagemet.security.JwtUser;
 import com.schoolManagement.StudentManagemet.security.JwtUtil;
 import com.schoolManagement.StudentManagemet.service.RefreshTokenService;
-import com.schoolManagement.StudentManagemet.service.UserDetailService;
+import com.schoolManagement.StudentManagemet.service.SchUserDetailsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -27,13 +26,13 @@ public class AuthController {
 
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
-    private final UserDetailService userDetailService;
+    private final SchUserDetailsService userDetailService;
     private final CustomUserDetailsService customUserDetailsService;
     private final RefreshTokenService refreshTokenService;
 
 
     @Autowired
-    public AuthController(AuthenticationManager authenticationManager, JwtUtil jwtUtil, UserDetailService userDetailService, CustomUserDetailsService customUserDetailsService, RefreshTokenService refreshTokenService) {
+    public AuthController(AuthenticationManager authenticationManager, JwtUtil jwtUtil, SchUserDetailsService userDetailService, CustomUserDetailsService customUserDetailsService, RefreshTokenService refreshTokenService) {
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
         this.userDetailService = userDetailService;

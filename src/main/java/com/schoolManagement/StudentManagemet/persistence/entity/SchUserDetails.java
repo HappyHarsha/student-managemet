@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -49,4 +50,10 @@ public class SchUserDetails implements Serializable {
 
     @Column(name = "user_type")
     private Integer userType;
+
+    @Column(name = "roles")
+    private List<String> roles;
+
+    @Column(name = "date_of_birth")
+    private String dateOfBirth;
 }

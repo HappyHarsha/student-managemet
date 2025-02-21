@@ -18,14 +18,16 @@ public class JwtUser implements UserDetails {
     private final String firstName;
     private final String lastName;
     private final String email;
+    private final Integer userType;
 
-    public JwtUser(String username, String password, Collection<? extends GrantedAuthority> authorities, String firstName, String lastName, String email) {
+    public JwtUser(String username, String password, Collection<? extends GrantedAuthority> authorities, String firstName, String lastName, String email, Integer userType) {
         this.username = username;
         this.password = password;
         this.authorities = authorities;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.userType = userType;
     }
 
     @Override
